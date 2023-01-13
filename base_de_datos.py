@@ -7,13 +7,15 @@ def conectar():
 
 def crear_tabla(conexion,cursor):
     sentencia="""
-        CREATE TABLE IF NOT EXISTS facturaciones
+        CREATE TABLE IF NOT EXISTS Facturaciones
         (ID INTEGER PRIMARY KEY NOT NULL,
         N°FACTURACION INT NOT NULL,
         CUIL INT NOT NULL,
         DIRECCION TEXT NOT NULL,
-        FECHA INT NOT NULL,
-        IMPORTE FLOAT NOT NULL,
+        DIA INT NOT NULL,
+        MES INT NOT NULL,
+        AÑO INT NOT NULL,
+        IMPORTE DOUBLE NOT NULL,
         DESCRIPCION TEXT);
     """
     cursor.execute(sentencia)
