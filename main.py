@@ -1,13 +1,48 @@
 import funciones as fn
 import base_de_datos as bd
 import os
-
+from tkinter import Tk, Label, Button
 con, cur= bd.conectar()
 bd.crear_tabla(con, cur)
-
 fn.crear_base_datos()
 
-while True:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''while True:
     opcion = fn.menu_principal()
 
     if opcion==1:
@@ -49,4 +84,4 @@ while True:
     elif opcion==4:
         fn.Eliminar_fac()
     elif opcion==5:
-        break
+        break'''
