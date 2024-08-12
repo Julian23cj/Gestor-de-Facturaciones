@@ -28,10 +28,25 @@ while True:
     elif opcion==2:
         bd.insertar_datos()
     elif opcion==3:
-        print("en desarrollo 3")
+        opcionMmF=fn.menu_mod_fac()
+        if opcionMmF == 1:
+            fn.Modificar_fac_cuil()
+        elif opcionMmF == 2:
+            fn.Modificar_fac_dir()
+        elif opcionMmF == 3:
+            fn.Modificar_fac_dia()
+        elif opcionMmF == 4:
+            fn.Modificar_fac_mes()
+        elif opcionMmF == 5:
+            fn.Modificar_fac_año()
+        elif opcionMmF == 6:
+            fn.Modificar_fac_importe()
+        elif opcionMmF == 7:
+            fn.Modificar_fac_descripcion()
+        elif opcionMmF == 8:
+            os.system('cls')
+            continue
     elif opcion==4:
-        print("en desarrollo 4")
+        fn.Eliminar_fac()
     elif opcion==5:
-        print("en desarrollo 5")
         break
-    

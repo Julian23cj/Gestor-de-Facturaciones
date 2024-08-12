@@ -1,6 +1,6 @@
 import os
 import base_de_datos as bd
-
+#Ctrl +k seguido de Ctrl+0
 def crear_base_datos():
     con, cur= bd.conectar()
     bd.crear_tabla(con, cur)
@@ -26,7 +26,18 @@ def menu_buscar_facturaciones():
     opcion=control_de_entrada_usuario()
     return opcion
 
-
+def menu_mod_fac():
+    print("------Menu Modificación Facturaciones------\n"
+    "1- Modificar Cuil.\n"
+    "2- Modificar dirección.\n"
+    "3- Modificar día.\n"
+    "4- Modificar mes.\n"
+    "5- Modificar año.\n"
+    "6- Modificar importe.\n"
+    "7- Modificar descripción.\n"
+    "8- Volver.\n")
+    opcion=control_de_entrada_usuario()
+    return opcion
 
 #Busqueda de facturas
 
@@ -83,10 +94,9 @@ def buscar_fac_direccion():
         print('---')
     con.close()
 
-#Creacion de facturas
+#Operacones de facturaciones
 
 def crear_facturacion():
-    
     while True:
         numeroFac= control_numero_facturacion()
         con,cur=bd.conectar()
@@ -116,7 +126,151 @@ def crear_facturacion():
     descripcion = (input("Ingresa una descripción: "))
     return numeroFac, cuil, direccion, dia, mes, anio, importe, descripcion
 
-#Control de errores
+def Modificar_fac_cuil():
+    while True:
+        aux=input('¿Quiere proceder con la operación? (si/no)\n')
+        if aux == 'si':
+            break
+        elif aux == 'no':
+            os.system('cls')
+            return True
+    con,cur=bd.conectar()
+    cur.execute('SELECT * FROM Facturaciones')
+    
+    NroFac=control_fac_repetidas()
+    NuevoCuil=control_cuil()
+    cur.execute('''UPDATE Facturaciones SET CUIL = ? WHERE N°FACTURACION = ?''', (NuevoCuil, NroFac))
+    print("\033[1;32m" + "Cuil modificado correctamente.\n" + '\033[0m')
+    con.commit()
+    con.close()
+
+def Modificar_fac_dir():
+    while True:
+        aux=input('¿Quiere proceder con la operación? (si/no)\n')
+        if aux == 'si':
+            break
+        elif aux == 'no':
+            os.system('cls')
+            return True
+    con,cur=bd.conectar()
+    cur.execute('SELECT * FROM Facturaciones')
+    
+    NroFac=control_fac_repetidas()
+    NuevaDic=input('Ingresa la nueva dirección: ')
+    cur.execute('''UPDATE Facturaciones SET DIRECCION = ? WHERE N°FACTURACION = ?''', (NuevaDic, NroFac))
+    print("\033[1;32m" + "Dirección modificado correctamente.\n" + '\033[0m')
+    con.commit()
+    con.close()
+
+def Modificar_fac_dia():
+    while True:
+        aux=input('¿Quiere proceder con la operación? (si/no)\n')
+        if aux == 'si':
+            break
+        elif aux == 'no':
+            os.system('cls')
+            return True
+    con,cur=bd.conectar()
+    cur.execute('SELECT * FROM Facturaciones')
+    
+    NroFac=control_fac_repetidas()
+    NuevoDia=control_dia()
+    cur.execute('''UPDATE Facturaciones SET DÍA = ? WHERE N°FACTURACION = ?''', (NuevoDia, NroFac))
+    print("\033[1;32m" + "Día modificado correctamente.\n" + '\033[0m')
+    con.commit()
+    con.close()
+
+def Modificar_fac_mes():
+    while True:
+        aux=input('¿Quiere proceder con la operación? (si/no)\n')
+        if aux == 'si':
+            break
+        elif aux == 'no':
+            os.system('cls')
+            return True
+    con,cur=bd.conectar()
+    cur.execute('SELECT * FROM Facturaciones')
+    
+    NroFac=control_fac_repetidas()
+    NuevoMes=control_mes()
+    cur.execute('''UPDATE Facturaciones SET MES = ? WHERE N°FACTURACION = ?''', (NuevoMes, NroFac))
+    print("\033[1;32m" + "Mes modificado correctamente.\n" + '\033[0m')
+    con.commit()
+    con.close()
+
+def Modificar_fac_año():
+    while True:
+        aux=input('¿Quiere proceder con la operación? (si/no)\n')
+        if aux == 'si':
+            break
+        elif aux == 'no':
+            os.system('cls')
+            return True
+    con,cur=bd.conectar()
+    cur.execute('SELECT * FROM Facturaciones')
+    
+    NroFac=control_fac_repetidas()
+    NuevoAño=control_anio()
+    cur.execute('''UPDATE Facturaciones SET AÑO = ? WHERE N°FACTURACION = ?''', (NuevoAño, NroFac))
+    print("\033[1;32m" + "Año modificado correctamente.\n" + '\033[0m')
+    con.commit()
+    con.close()
+
+def Modificar_fac_importe():
+    while True:
+        aux=input('¿Quiere proceder con la operación? (si/no)\n')
+        if aux == 'si':
+            break
+        elif aux == 'no':
+            os.system('cls')
+            return True
+    con,cur=bd.conectar()
+    cur.execute('SELECT * FROM Facturaciones')
+    
+    NroFac=control_fac_repetidas()
+    NuevoImp=control_importe()
+    cur.execute('''UPDATE Facturaciones SET IMPORTE = ? WHERE N°FACTURACION = ?''', (NuevoImp, NroFac))
+    print("\033[1;32m" + "Importe modificado correctamente.\n" + '\033[0m')
+    con.commit()
+    con.close()
+
+def Modificar_fac_descripcion():
+    while True:
+        aux=input('¿Quiere proceder con la operación? (si/no)\n')
+        if aux == 'si':
+            break
+        elif aux == 'no':
+            os.system('cls')
+            return True
+    con,cur=bd.conectar()
+    cur.execute('SELECT * FROM Facturaciones')
+    
+    NroFac=control_fac_repetidas()
+    NuevaDes=input('Ingresa la nueva descripción: ')
+    cur.execute('''UPDATE Facturaciones SET DESCRIPCION = ? WHERE N°FACTURACION = ?''', (NuevaDes, NroFac))
+    print("\033[1;32m" + "Descripción modificado correctamente.\n" + '\033[0m')
+    con.commit()
+    con.close()
+
+def Eliminar_fac():
+    while True:
+        aux=input('¿Quiere proceder con la operación? (si/no)\n')
+        if aux == 'si':
+            break
+        elif aux == 'no':
+            os.system('cls')
+            return True
+    con,cur=bd.conectar()
+    cur.execute('SELECT * FROM Facturaciones')
+    print('--Eliminar Facturación--')
+    NroFac=control_fac_repetidas()
+    
+    cur.execute('''DELETE FROM Facturaciones WHERE N°FACTURACION = ?''', (NroFac,))
+    print("\033[1;32m" + "Facturación eliminada correctamente.\n" + '\033[0m')
+    con.commit()
+    con.close()
+
+#Control de errores inputs
 
 def control_de_entrada_usuario():
     while True:
@@ -139,6 +293,29 @@ def control_numero_facturacion():
             return entero
         except ValueError:
             print("\033[1;31m"+"Error, ingrese un numero.\n"+'\033[0;m')
+
+def control_fac_repetidas():
+    while True:
+        NroFac= control_numero_facturacion()
+        con,cur=bd.conectar()
+        cur.execute('SELECT * FROM Facturaciones')
+        datos=cur.fetchall()
+        aux=False
+        for control in datos:
+            if NroFac == control[1]:
+                aux=True
+                print(f'Número de Facturación: {control[1]} CUIL: {control[2]} Dirección: {control[3]} Fecha: {control[4]}/{control[5]}/{control[6]} Importe: {control[7]} Descripción: {control[8]}')
+                break
+            else:
+                aux=False
+
+        if aux == True:
+            con.close()
+            return NroFac
+        elif aux == False:
+            print("\033[1;31m"+"Error, la facturación no existe, intentelo nuevamente.\n"+'\033[0;m')
+            print("")
+            continue
 
 def control_cuil():
     while True:

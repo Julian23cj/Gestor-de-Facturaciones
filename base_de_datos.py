@@ -1,5 +1,6 @@
 import sqlite3
 import funciones as fn
+import os
 
 def conectar():
     conexion= sqlite3.connect("Facturaciones.db")
@@ -21,15 +22,21 @@ def crear_tabla(conexion,cursor):
     """
     cursor.execute(sentencia)
     conexion.close()
-    #print("Tabla creada correctamente.")
 
 def insertar_datos():
+    while True:
+        control=input('¿Quiere proceder con la operación? (si/no)\n')
+        if control == 'si':
+            break
+        elif control == 'no':
+            os.system('cls')
+            return True
+    
     numeroFac, cuil, direccion, dia, mes, anio, importe, descripcion=fn.crear_facturacion()
     conexion,cursor= conectar()
-    
-        
+       
     cursor.execute('''INSERT INTO Facturaciones (N°FACTURACION, CUIL, DIRECCION, DÍA, MES, AÑO, IMPORTE, DESCRIPCION) 
     VALUES(?,?,?,?,?,?,?,?)''', (numeroFac, cuil, direccion, dia, mes, anio, importe, descripcion))
     conexion.commit()
     conexion.close()
-    print("\033[1;31m"+"Facturación creada correctamente.\n"+'\033[0;m')
+    print("\033[1;32m" + "Facturación creada correctamente.\n" + '\033[0m')
